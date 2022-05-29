@@ -31,24 +31,16 @@ public class Main {
 
 
         // main loop
-        while (!isOver && flag) {
+        while (!isOver) {
             try {
                 init.printMenu();
-                selection = sc.nextInt();
+                selection = Integer.parseInt(sc.nextLine());
                 switch (selection) {
                     case 1: // 메뉴 검색
                         recipeList.getRecipeList(1);
-
                         break;
                     case 2: // 메뉴 추가
                         recipeAdd.addRecipeInput();
-
-//                        rc.addFood("달걀,ea",1);
-//                        rc.addFood("밀가루,g",130);
-//                        rc.addKnowHow("요리에 앞서 필요한 재료를 모두 꺼내 준비합니다.");
-//                        rc.addKnowHow("젤 먼저 밀가루를 체에 쳐서 준비합니다.\n\t쿠키는 박력분이지만 보통 집에서 많이 사용하는 중력분을 사용해도 상관없어요.");
-//                        rc.print();
-
                         break;
                     case 3: // 레시피 수정
                         recipeModify.modifyRecipyInput();
@@ -59,9 +51,8 @@ public class Main {
                     default:
                         System.out.println(Font.FONT_RED + "잘못 입력하셨습니다." + Font.RESET);
                 }
-            } catch (InputMismatchException e) {
-                flag = false;
-                System.out.println(Font.FONT_RED + "숫자를 입력해주세요." + Font.RESET);
+            } catch (InputMismatchException | NumberFormatException e) {
+                System.out.println(Font.FONT_RED + "숫자를 입력해주세요.\n" + Font.RESET);
             }
         }
 
