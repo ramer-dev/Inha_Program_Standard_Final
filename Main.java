@@ -1,7 +1,7 @@
-import com.inha.finalexam.recipe.RecipeAdd;
-import com.inha.finalexam.recipe.RecipeFileReader;
-import com.inha.finalexam.recipe.RecipeList;
-import com.inha.finalexam.recipe.RecipeModify;
+import recipe.RecipeAdd;
+import recipe.RecipeFileReader;
+import recipe.RecipeList;
+import recipe.RecipeModify;
 import util.Font;
 import util.Initializer;
 
