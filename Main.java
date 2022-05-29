@@ -22,8 +22,6 @@ public class Main {
 
         // class Loader
         RecipeList recipeList = new RecipeList(sc);
-        RecipeAdd recipeAdd = new RecipeAdd(recipeList, sc);
-        RecipeModify recipeModify = new RecipeModify(recipeList, sc);
         RecipeFileReader readRecipe = new RecipeFileReader(recipeList);
         readRecipe.fileRead();
 
@@ -37,10 +35,10 @@ public class Main {
                         recipeList.getRecipeList(1);
                         break;
                     case 2: // 메뉴 추가
-                        recipeAdd.addRecipeInput();
+                        recipeList.recipeAdd.addRecipeInput();
                         break;
                     case 3: // 레시피 수정
-                        recipeModify.modifyRecipyInput();
+                        recipeList.recipeModify.modifyRecipeInput();
                         break;
                     case 4: // 나가기
                         isOver = true;

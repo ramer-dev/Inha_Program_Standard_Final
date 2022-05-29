@@ -52,6 +52,10 @@ public class RecipeFileReader {
 
 
             while ((str = reader.readLine()) != null) {
+
+                // Skip Blank Line
+                if(str.length() == 0) continue;
+
                 char firstWord = str.charAt(0);
                 switch (firstWord) {
                     case '@':
