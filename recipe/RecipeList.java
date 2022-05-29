@@ -10,20 +10,26 @@ import java.util.Scanner;
 public class RecipeList {
 
     private Scanner sc;
+    protected Map<String, Recipe> recipeList = new HashMap<>();
+
     public RecipeAdd recipeAdd;
     public RecipeModify recipeModify;
+
+    // Class Initializer
+    // Scanner class imported from Class.Main
     public RecipeList(Scanner sc) {
         this.sc = sc;
         this.recipeAdd = new RecipeAdd(this, sc);
         this.recipeModify = new RecipeModify(this, sc);
     }
 
-    Map<String, Recipe> recipeList = new HashMap<>();
-
+    // Adds to the RecipeList {Recipe.name, <class=Recipe>}
     public void addRecipeList(Recipe recipe) {
         this.recipeList.put(recipe.getName(), recipe);
     }
 
+    // Get All RecipeList
+    // argument "type" set the page which connects to the next page.
     public void getRecipeList(int type) {
         String[] recipeName = this.recipeList.keySet().toArray(new String[0]);
         Recipe[] address = this.recipeList.values().toArray(new Recipe[0]);

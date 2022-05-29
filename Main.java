@@ -38,7 +38,7 @@ public class Main {
                         recipeList.recipeAdd.addRecipeInput();
                         break;
                     case 3: // 레시피 수정
-                        recipeList.recipeModify.modifyRecipeInput();
+                        recipeList.getRecipeList(2);
                         break;
                     case 4: // 나가기
                         isOver = true;

@@ -60,6 +60,9 @@ public class RecipeFileReader {
                 switch (firstWord) {
                     case '@':
                         name = str.substring(1);
+
+                        // Find Duplicate Recipe.name
+                        // if it finds duplication, do break.
                         for (int i = 0; i < this.list.recipeList.size(); i++) {
                             if (this.list.recipeList.containsKey(name)) {
                                 System.out.println("중복 클래스 발생\t" + name);
@@ -70,25 +73,28 @@ public class RecipeFileReader {
                         }
                         break;
                     case '#':
+                        // flag means includes Serving
                         flag = true;
                         serveSize = Integer.parseInt(str.substring(1));
                         break;
                     case '$':
+                        // put {"name,unit": value}
                         str = str.substring(1);
                         String[] a = str.split(",");
                         map.put(a[0] + "," + a[1], Double.parseDouble(a[2]));
                         break;
                     case '%':
+                        // '|' letter means new line
                         list.add(str.substring(1).replaceAll("[|]", "\n\t"));
                         break;
                     case '^':
-
+                        // flag means it includes servings.
                         if (flag) {
                             this.list.addRecipeList(new Recipe(name, map, list, serveSize));
                         } else {
                             this.list.addRecipeList(new Recipe(name, map, list));
                         }
-
+                        // delete all map, list items
                         map.clear();
                         list.clear();
                         flag = false;

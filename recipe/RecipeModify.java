@@ -9,17 +9,20 @@ public class RecipeModify {
     RecipeList list;
     Scanner sc;
 
+    // Class initializer
+    // RecipeList class import from Class.RecipeList
+    // Scanner class import from Class.Main => Class.RecipeList
     public RecipeModify(RecipeList list, Scanner sc) {
         this.list = list;
         this.sc = sc;
-
-//        list.getRecipeList(2);
     }
 
+    // Prints all recipe list
     public void modifyRecipeInput() {
         list.getRecipeList(2);
     }
 
+    // Modify recipe items
     void RecipeModifyInput(Recipe recipe) {
         System.out.println(
                 "┌────어떤 것을 수정하시겠어요?────┐\n" +
@@ -31,12 +34,12 @@ public class RecipeModify {
                         "└────────────────────┘");
         int num = Integer.parseInt(sc.nextLine());
 
-
         int idx;
         String[] array;
 
         try {
             switch (num) {
+                // modify name
                 case 1:
                     System.out.println(Font.FONT_GREEN + "수정할 이름을 입력해주세요." + Font.RESET);
                     System.out.println(Font.FONT_GREEN + "기존 이름 :\t" + Font.FONT_CYAN + recipe.getName() + Font.RESET);
@@ -45,6 +48,7 @@ public class RecipeModify {
                     System.out.println(Font.FONT_GREEN + "변경 후 이름 :\t" + Font.FONT_CYAN + recipe.getName() + Font.RESET);
                     System.out.println(Font.FONT_GREEN + "적용이 완료되었습니다." + Font.RESET);
                     break;
+                // modify servings
                 case 2:
                     System.out.println(Font.FONT_GREEN + "수정할 인원을 입력해주세요." + Font.RESET);
                     System.out.println(Font.FONT_GREEN + "기존 인원 :\t" + Font.FONT_CYAN + recipe.getServeSize() + Font.RESET);
@@ -53,7 +57,7 @@ public class RecipeModify {
                     System.out.println(Font.FONT_GREEN + "변경 후 인원 :\t" + Font.FONT_CYAN + recipe.getServeSize() + Font.RESET);
                     System.out.println(Font.FONT_GREEN + "적용이 완료되었습니다." + Font.RESET);
                     break;
-
+                // modify foods
                 case 3:
                     System.out.println(Font.FONT_GREEN + "수정할 식재료의 숫자를 입력해주세요." + Font.RESET);
                     recipe.printFood();
@@ -75,6 +79,7 @@ public class RecipeModify {
                     recipe.modifyFood(food, unit, value, array[idx - 1]);
                     System.out.println(Font.FONT_GREEN + "적용이 완료되었습니다." + Font.RESET);
                     break;
+                // modify knowHow
                 case 4:
                     System.out.println(Font.FONT_GREEN + "수정할 요리순서의 숫자를 입력해주세요." + Font.RESET);
                     recipe.printRecipe();
@@ -91,6 +96,7 @@ public class RecipeModify {
                     System.out.println(Font.FONT_GREEN + "적용이 완료되었습니다." + Font.RESET);
 
                     break;
+                // In other case, breaks out
                 case 5:
                 default:
                     break;
