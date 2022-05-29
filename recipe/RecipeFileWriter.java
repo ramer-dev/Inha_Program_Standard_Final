@@ -42,26 +42,7 @@ public class RecipeFileWriter {
 
 
         try {
-            char sep_;
-            switch (sep) {
-                case 1:
-                    sep_ = '@';
-                    break;
-                case 2:
-                    sep_ = '#';
-                    break;
-                case 3:
-                    sep_ = '$';
-                    break;
-                case 4:
-                    sep_ = '%';
-                    break;
-                case 5:
-                    sep_ = '^';
-                    break;
-                default:
-                    throw new IOException("에러 발생");
-            }
+            char sep_ = chooseSeperator(sep);
             memory += (sep_ + str + "\n");
 //            writer.write(sep_ + str + "\n");
 //            writer.flush();
@@ -73,7 +54,7 @@ public class RecipeFileWriter {
         }
     }
 
-    char chooseSeperator (int sep) throws IOException {
+    char chooseSeperator(int sep) throws IOException {
         char sep_;
         switch (sep) {
             case 1:
@@ -93,11 +74,12 @@ public class RecipeFileWriter {
                 break;
             default:
                 throw new IOException("에러 발생");
-            }
-            return sep_;
+        }
+        return sep_;
 
     }
-    void flush(){
+
+    void flush() {
         String path = Recipe.class.getResource("").getPath();
         File file = new File(path + "Recipe.txt");
 
