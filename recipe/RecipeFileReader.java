@@ -25,6 +25,8 @@ public class RecipeFileReader {
 
     public RecipeFileReader(RecipeList list) {
         this.list = list;
+
+        fileRead();
     }
 
     public void fileRead() {
