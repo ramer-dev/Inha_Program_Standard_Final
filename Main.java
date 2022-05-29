@@ -14,13 +14,11 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         boolean isOver = false;
-        boolean flag = true;
         int selection;
 
         // Initializer
         Initializer init = new Initializer();
-        init.init();
-
+        init.banner();
 
         // class Loader
         RecipeList recipeList = new RecipeList(sc);
@@ -28,7 +26,6 @@ public class Main {
         RecipeModify recipeModify = new RecipeModify(recipeList, sc);
         RecipeFileReader readRecipe = new RecipeFileReader(recipeList);
         readRecipe.fileRead();
-
 
         // main loop
         while (!isOver) {
@@ -53,12 +50,15 @@ public class Main {
                 }
             } catch (InputMismatchException | NumberFormatException e) {
                 System.out.println(Font.FONT_RED + "숫자를 입력해주세요.\n" + Font.RESET);
+                System.out.print(Font.FONT_GREEN + "\n메인 메뉴로 돌아갑니다. \n" + Font.RESET);
+            } catch (ArrayIndexOutOfBoundsException e) {
+                System.out.println(Font.FONT_RED + "범위 밖의 숫자를 입력하셨습니다.\n" + Font.RESET);
+                System.out.print(Font.FONT_GREEN + "\n메인 메뉴로 돌아갑니다. \n" + Font.RESET);
             }
         }
 
         // Finalize
         sc.close();
-
 
     }
 

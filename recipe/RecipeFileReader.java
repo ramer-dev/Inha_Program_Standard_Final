@@ -13,7 +13,8 @@ import java.util.Map;
 public class RecipeFileReader {
 
     RecipeList list;
-    public RecipeFileReader(RecipeList list){
+
+    public RecipeFileReader(RecipeList list) {
         this.list = list;
     }
 
@@ -41,7 +42,7 @@ public class RecipeFileReader {
             BufferedReader reader = new BufferedReader(
                     new FileReader(path + "Recipe.txt")
             );
-
+            System.out.println(path);
             String str;
             String name = "";
             Map<String, Double> map = new HashMap<>();
@@ -52,10 +53,17 @@ public class RecipeFileReader {
 
             while ((str = reader.readLine()) != null) {
                 char firstWord = str.charAt(0);
-
                 switch (firstWord) {
                     case '@':
                         name = str.substring(1);
+                        for (int i = 0; i < this.list.recipeList.size(); i++) {
+                            if (this.list.recipeList.containsKey(name)) {
+                                System.out.println("중복 클래스 발생\t" + name);
+                                map.clear();
+                                list.clear();
+                                break;
+                            }
+                        }
                         break;
                     case '#':
                         flag = true;
@@ -70,13 +78,15 @@ public class RecipeFileReader {
                         list.add(str.substring(1).replaceAll("[|]", "\n\t"));
                         break;
                     case '^':
+
                         if (flag) {
                             this.list.addRecipeList(new Recipe(name, map, list, serveSize));
                         } else {
                             this.list.addRecipeList(new Recipe(name, map, list));
                         }
-                        list.clear();
+
                         map.clear();
+                        list.clear();
                         flag = false;
                         break;
 
@@ -92,14 +102,21 @@ public class RecipeFileReader {
             System.out.println("Recipe.txt의 경로가");
             System.out.println(path);
             System.out.println("안에 있는지 확인해주세요." + Font.RESET);
+            System.out.print(Font.FONT_GREEN + "\n메인 메뉴로 돌아갑니다. \n" + Font.RESET);
+
             System.exit(0);
-        } catch (ArrayIndexOutOfBoundsException e){
-            System.out.println(Font.FONT_RED +"파일의 형식이 잘못되었습니다.");
-            System.out.println(path + "Recipe.txt 파일 내 형식을 확인해주세요" +Font.RESET);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println(Font.FONT_RED + "파일의 형식이 잘못되었습니다.");
+            System.out.println(path + "Recipe.txt 파일 내 형식을 확인해주세요" + Font.RESET);
+            System.out.print(Font.FONT_GREEN + "\n메인 메뉴로 돌아갑니다. \n" + Font.RESET);
+
             System.exit(0);
+        } catch (StringIndexOutOfBoundsException e) {
+            System.out.println(Font.FONT_RED + "파일의 형식이 잘못되었습니다.");
+            System.out.println(Font.FONT_RED + "빈 줄이 있는지 확인해주세요.");
+            System.out.print(Font.FONT_GREEN + "\n메인 메뉴로 돌아갑니다. \n" + Font.RESET);
         }
     }
-
 
 
 }

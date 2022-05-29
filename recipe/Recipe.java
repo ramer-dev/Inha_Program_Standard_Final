@@ -49,7 +49,7 @@ public class Recipe {
 
             System.out.printf("%d.\t%s",i+1,temp[0]);
             System.out.print("\t|\t");
-            System.out.printf("%.3f%s\n", value[i], temp[1]);
+            System.out.printf("%.3f%s\n", Math.round(value[i]*100)/100.0, temp[1]);
         }
     }
 

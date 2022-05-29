@@ -98,7 +98,7 @@ public class RecipeList {
                     System.out.printf(Font.FONT_GREEN + "%s %f 단위량 \t:" + Font.RESET, food, value);
                     String unit = sc.nextLine();
 
-                    recipe.modifyFood(food, unit, value, array[idx]);
+                    recipe.modifyFood(food, unit, value, array[idx-1]);
                     System.out.println(Font.FONT_GREEN + "적용이 완료되었습니다." + Font.RESET);
                     break;
                 case 4:
@@ -122,7 +122,9 @@ public class RecipeList {
                     break;
             }
         } catch (InputMismatchException | NumberFormatException e) {
-        System.out.println(Font.FONT_RED + "숫자를 입력해주세요." + Font.RESET);
-    }
+            System.out.println(Font.FONT_RED + "숫자를 입력해주세요." + Font.RESET);
+            System.out.print(Font.FONT_GREEN + "\n메인 메뉴로 돌아갑니다. \n" + Font.RESET);
+
+        }
     }
 }

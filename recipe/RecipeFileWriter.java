@@ -8,6 +8,20 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class RecipeFileWriter {
+    String memory = "";
+
+    public void fileWrite(int num, int sep) {
+        try {
+            char sep_ = chooseSeperator(sep);
+
+            memory += (sep_ + num + "\n");
+
+        } catch (IOException e) {
+            System.out.println(Font.FONT_RED + "파일 쓰기에 실패하였습니다.");
+            System.exit(0);
+        }
+    }
+
     public void fileWrite(String str, int sep) {
          /* txt file Rule
         1. txt 파일을 \n 문자 단위로 split
@@ -25,7 +39,6 @@ public class RecipeFileWriter {
            - ex ) %밀가루를 우유를 넣어 반죽하세요.
         6. '^' 해당 Recipe의 Data 개행을 종료하고 클래스를 생성합니다.
         */
-
 
 
         try {
@@ -49,22 +62,56 @@ public class RecipeFileWriter {
                 default:
                     throw new IOException("에러 발생");
             }
-            String path = Recipe.class.getResource("").getPath();
-            File file = new File(path + "Recipe_bck.txt");
+            memory += (sep_ + str + "\n");
+//            writer.write(sep_ + str + "\n");
+//            writer.flush();
+//            writer.close();
 
-            FileWriter fw = new FileWriter(file);
-            BufferedWriter writer = new BufferedWriter(fw);
-            writer.write(sep_ + str);
-            writer.newLine();
-            writer.append("test");
-            writer.flush();
-            writer.close();
-
-        } catch (
-                IOException e) {
-            System.out.println(Font.FONT_RED + "파일 읽기에 실패하였습니다.");
+        } catch (IOException e) {
+            System.out.println(Font.FONT_RED + "파일 쓰기에 실패하였습니다.");
             System.exit(0);
         }
+    }
 
+    char chooseSeperator (int sep) throws IOException {
+        char sep_;
+        switch (sep) {
+            case 1:
+                sep_ = '@';
+                break;
+            case 2:
+                sep_ = '#';
+                break;
+            case 3:
+                sep_ = '$';
+                break;
+            case 4:
+                sep_ = '%';
+                break;
+            case 5:
+                sep_ = '^';
+                break;
+            default:
+                throw new IOException("에러 발생");
+            }
+            return sep_;
+
+    }
+    void flush(){
+        String path = Recipe.class.getResource("").getPath();
+        File file = new File(path + "Recipe.txt");
+
+        try {
+            FileWriter fw = new FileWriter(file, true);
+            BufferedWriter writer = new BufferedWriter(fw);
+            writer.write(memory);
+            writer.flush();
+            writer.close();
+            memory = "";
+
+        } catch (IOException e) {
+            System.out.println(Font.FONT_RED + "파일 쓰기에 실패하였습니다.");
+            System.exit(0);
+        }
     }
 }

@@ -6,16 +6,6 @@ import java.util.Map;
 
 
 public class Initializer {
-    public void init() {
-        banner();
-
-    }
-
-    public void flushMap(Map<String, Double> map, List<String> list) {
-        map.clear();
-        list.clear();
-    }
-
 
     public void printMenu() {
         System.out.println(
@@ -27,7 +17,7 @@ public class Initializer {
                         "└───────────────────┘\n");
     }
 
-    void banner() {
+    public void banner() {
         System.out.println(Font.BACKGROUND_WHITE + Font.FONT_BLACK + "\n" +
                 "8 888888888o.   8 8888888888       ,o888888o.     8 8888 8 888888888o   8 8888888888   \n" +
                 "8 8888    `88.  8 8888            8888     `88.   8 8888 8 8888    `88. 8 8888         \n" +
