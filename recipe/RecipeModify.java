@@ -6,13 +6,14 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class RecipeModify {
-    RecipeList list;
-    Scanner sc;
-
+    private RecipeList list;
+    private Scanner sc;
+    protected RecipeFileWriter writer;
     // Class initializer
     // RecipeList class import from Class.RecipeList
     // Scanner class import from Class.Main => Class.RecipeList
-    public RecipeModify(RecipeList list, Scanner sc) {
+    public RecipeModify(RecipeList list, Scanner sc, RecipeFileWriter writer) {
+        this.writer = writer;
         this.list = list;
         this.sc = sc;
     }
@@ -20,6 +21,7 @@ public class RecipeModify {
     // Prints all recipe list
     public void modifyRecipeInput() {
         list.getRecipeList(2);
+
     }
 
     // Modify recipe items

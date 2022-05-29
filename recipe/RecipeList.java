@@ -14,13 +14,17 @@ public class RecipeList {
 
     public RecipeAdd recipeAdd;
     public RecipeModify recipeModify;
+    public RecipeFileWriter recipeFileWriter;
+    public RecipeFileReader recipeFileReader;
 
     // Class Initializer
     // Scanner class imported from Class.Main
     public RecipeList(Scanner sc) {
         this.sc = sc;
-        this.recipeAdd = new RecipeAdd(this, sc);
-        this.recipeModify = new RecipeModify(this, sc);
+        this.recipeFileReader = new RecipeFileReader(this);
+        this.recipeFileWriter = new RecipeFileWriter(recipeFileReader);
+        this.recipeAdd = new RecipeAdd(this, sc, this.recipeFileWriter);
+        this.recipeModify = new RecipeModify(this, sc, this.recipeFileWriter);
     }
 
     // Adds to the RecipeList {Recipe.name, <class=Recipe>}

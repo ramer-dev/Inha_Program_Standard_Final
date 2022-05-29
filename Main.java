@@ -22,8 +22,7 @@ public class Main {
 
         // class Loader
         RecipeList recipeList = new RecipeList(sc);
-        RecipeFileReader readRecipe = new RecipeFileReader(recipeList);
-        readRecipe.fileRead();
+
 
         // main loop
         while (!isOver) {

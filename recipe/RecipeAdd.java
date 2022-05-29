@@ -12,9 +12,9 @@ public class RecipeAdd {
 
     // Class initializer
     // Scanner imported from Class.Main => Class.RecipeList
-    public RecipeAdd(RecipeList list, Scanner sc){
+    public RecipeAdd(RecipeList list, Scanner sc, RecipeFileWriter writer){
         this.list = list;
-        this.writer = new RecipeFileWriter();
+        this.writer = writer;
         this.sc = sc;
     }
 

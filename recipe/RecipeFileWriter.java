@@ -9,9 +9,15 @@ import java.io.IOException;
 
 public class RecipeFileWriter {
     String memory = "";
+    RecipeFileReader reader;
+
+    RecipeFileWriter(RecipeFileReader recipeFileReader) {
+        this.reader = recipeFileReader;
+    }
 
     public void fileWrite(int num, int sep) {
         try {
+
             char sep_ = chooseSeperator(sep);
 
             memory += (sep_ + num + "\n");
