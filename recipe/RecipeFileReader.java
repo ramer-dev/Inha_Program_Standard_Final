@@ -75,7 +75,7 @@ public class RecipeFileReader {
                         // if it finds duplication, do break.
                         for (int i = 0; i < this.list.recipeList.size(); i++) {
                             if (this.list.recipeList.containsKey(name)) {
-                                System.out.println("중복 클래스 발생\t" + name);
+                                System.out.println("중복 레시피 발생\t" + name);
                                 this.map.clear();
                                 this.arrayList.clear();
                                 break;
