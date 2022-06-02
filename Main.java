@@ -41,6 +41,7 @@ public class Main {
                         break;
                     case 4: // 나가기
                         isOver = true;
+                        System.out.println(Font.FONT_RED + "레시피 서비스를 종료합니다.");
                         break;
                     default:
                         System.out.println(Font.FONT_RED + "잘못 입력하셨습니다." + Font.RESET);

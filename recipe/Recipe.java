@@ -83,8 +83,8 @@ public class Recipe {
     private int serveSize = 1;
 
     // n인분
-    public int getServeSize() {
-        return serveSize;
+    public String getServeSize() {
+        return String.valueOf(serveSize);
     }
 
     public void setServeSize(int serveSize) {
@@ -103,6 +103,10 @@ public class Recipe {
     // Food Map Return
     public Map<String, Double> getFood() {
         return this.food;
+    }
+
+    public String getFood(String key) {
+        return key;
     }
 
     // Modify Food Map by key with values

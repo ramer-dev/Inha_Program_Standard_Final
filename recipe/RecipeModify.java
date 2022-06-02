@@ -9,6 +9,7 @@ public class RecipeModify {
     private RecipeList list;
     private Scanner sc;
     protected RecipeFileWriter writer;
+
     // Class initializer
     // RecipeList class import from Class.RecipeList
     // Scanner class import from Class.Main => Class.RecipeList
@@ -16,12 +17,6 @@ public class RecipeModify {
         this.writer = writer;
         this.list = list;
         this.sc = sc;
-    }
-
-    // Prints all recipe list
-    public void modifyRecipeInput() {
-        list.getRecipeList(2);
-
     }
 
     // Modify recipe items
@@ -46,6 +41,7 @@ public class RecipeModify {
                     System.out.println(Font.FONT_GREEN + "수정할 이름을 입력해주세요." + Font.RESET);
                     System.out.println(Font.FONT_GREEN + "기존 이름 :\t" + Font.FONT_CYAN + recipe.getName() + Font.RESET);
                     String new_name = sc.nextLine();
+                    writer.fileModify(recipe.getName(), new_name, num, recipe.getName());
                     recipe.setName(new_name);
                     System.out.println(Font.FONT_GREEN + "변경 후 이름 :\t" + Font.FONT_CYAN + recipe.getName() + Font.RESET);
                     System.out.println(Font.FONT_GREEN + "적용이 완료되었습니다." + Font.RESET);
@@ -54,8 +50,9 @@ public class RecipeModify {
                 case 2:
                     System.out.println(Font.FONT_GREEN + "수정할 인원을 입력해주세요." + Font.RESET);
                     System.out.println(Font.FONT_GREEN + "기존 인원 :\t" + Font.FONT_CYAN + recipe.getServeSize() + Font.RESET);
-                    int serve_size = Integer.parseInt(sc.nextLine());
-                    recipe.setServeSize(serve_size);
+                    String serve_size = sc.nextLine();
+                    writer.fileModify(recipe.getServeSize(), serve_size, num, recipe.getName());
+                    recipe.setServeSize(Integer.parseInt(serve_size));
                     System.out.println(Font.FONT_GREEN + "변경 후 인원 :\t" + Font.FONT_CYAN + recipe.getServeSize() + Font.RESET);
                     System.out.println(Font.FONT_GREEN + "적용이 완료되었습니다." + Font.RESET);
                     break;
@@ -78,6 +75,8 @@ public class RecipeModify {
                     System.out.printf(Font.FONT_GREEN + "%s %f 단위량 \t:" + Font.RESET, food, value);
                     String unit = sc.nextLine();
 
+                    writer.fileModify(recipe.getFood(array[idx-1]) , food+','+unit+','+value, num, recipe.getName());
+
                     recipe.modifyFood(food, unit, value, array[idx - 1]);
                     System.out.println(Font.FONT_GREEN + "적용이 완료되었습니다." + Font.RESET);
                     break;
@@ -94,6 +93,7 @@ public class RecipeModify {
                     System.out.print(Font.FONT_GREEN + "바꿀 내용 :" + Font.RESET);
                     String old_str = recipe.getKnowHow(idx - 1);
                     String new_str = sc.nextLine();
+                    writer.fileModify(old_str , new_str, num, recipe.getName());
                     recipe.modifyKnowHow(old_str, new_str);
                     System.out.println(Font.FONT_GREEN + "적용이 완료되었습니다." + Font.RESET);
 

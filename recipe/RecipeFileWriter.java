@@ -6,10 +6,13 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.List;
 
 public class RecipeFileWriter {
     String memory = "";
     RecipeFileReader reader;
+    String path = Recipe.class.getResource("").getPath();
+    File file = new File(path + "Recipe.txt");
 
     RecipeFileWriter(RecipeFileReader recipeFileReader) {
         this.reader = recipeFileReader;
@@ -26,6 +29,28 @@ public class RecipeFileWriter {
             System.out.println(Font.FONT_RED + "파일 쓰기에 실패하였습니다.");
             System.exit(0);
         }
+    }
+
+    // 수정 시 사용
+    public void fileModify(String old_str, String new_str, int sep, String name){
+        try {
+            List<String> new_file = reader.fileRead(old_str, new_str, sep, name);
+//            FileWriter writer = new FileWriter(file);
+            StringBuilder sb = new StringBuilder();
+
+            for (String eachLine : new_file){
+                sb.append(eachLine).append("\n");
+            }
+
+            memory = sb.toString();
+
+            flush(false);
+
+        } catch (IOException e) {
+            System.out.println(Font.FONT_RED + "파일 쓰기에 실패하였습니다.");
+            System.exit(0);
+        }
+
     }
 
     public void fileWrite(String str, int sep) {
@@ -85,12 +110,11 @@ public class RecipeFileWriter {
 
     }
 
-    void flush() {
-        String path = Recipe.class.getResource("").getPath();
-        File file = new File(path + "Recipe.txt");
+    protected void flush(boolean append) {
+
 
         try {
-            FileWriter fw = new FileWriter(file, true);
+            FileWriter fw = new FileWriter(file, append);
             BufferedWriter writer = new BufferedWriter(fw);
             writer.write(memory);
             writer.flush();

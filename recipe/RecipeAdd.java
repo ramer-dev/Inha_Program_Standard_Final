@@ -12,7 +12,7 @@ public class RecipeAdd {
 
     // Class initializer
     // Scanner imported from Class.Main => Class.RecipeList
-    public RecipeAdd(RecipeList list, Scanner sc, RecipeFileWriter writer){
+    public RecipeAdd(RecipeList list, Scanner sc, RecipeFileWriter writer) {
         this.list = list;
         this.writer = writer;
         this.sc = sc;
@@ -26,8 +26,8 @@ public class RecipeAdd {
         writer.fileWrite(name, 1);
 
         // If already has same name, breaks out.
-        for (int i = 0; i<list.recipeList.size(); i++){
-            if(list.recipeList.containsKey(name)){
+        for (int i = 0; i < list.recipeList.size(); i++) {
+            if (list.recipeList.containsKey(name)) {
                 System.out.println(Font.FONT_RED + "중복 레시피 발생 : " + name + Font.RESET);
                 System.out.println(Font.FONT_RED + "중복 레시피는 허용하지 않습니다." + Font.RESET);
                 System.out.print(Font.FONT_GREEN + "\n메인 메뉴로 돌아갑니다. \n" + Font.RESET);
@@ -36,7 +36,7 @@ public class RecipeAdd {
         }
 
         // get Servings
-        System.out.print(Font.FONT_GREEN + "레시피는 몇인분 기준인가요? (숫자만 입력) : \t" + Font.RESET);
+        System.out.print(Font.FONT_GREEN + "레시피는 몇인분 기준인가요? ("+ Font.FONT_RED + "숫자만 입력" + Font.FONT_GREEN + ") " + Font.RESET);
         int num = Integer.parseInt(sc.nextLine());
         writer.fileWrite(num, 2);
 
@@ -53,7 +53,7 @@ public class RecipeAdd {
         // clear memory to prevent interference
         map.clear();
         lst.clear();
-        writer.flush();
+        writer.flush(true);
 
     }
 
@@ -65,21 +65,24 @@ public class RecipeAdd {
 
         while (i < 100) {
             String food;
-            double level;
+            String level;
             String unit;
             System.out.printf(Font.FONT_GREEN + "재료 %d\t:" + Font.RESET, i);
             food = sc.nextLine();
             if (food.equals("-s")) {
                 break;
             }
-            System.out.printf(Font.FONT_GREEN + "%s 용량 \t:" + Font.RESET, food);
-            level = Double.parseDouble(sc.nextLine());
-            System.out.printf(Font.FONT_GREEN + "%s %f 단위량 \t:" + Font.RESET, food, level);
+            System.out.printf(Font.FONT_GREEN + "%s 용량 (" + Font.FONT_RED + "숫자만 입력" + Font.FONT_GREEN + ")\t:" + Font.RESET, food);
+            level = sc.nextLine();
+            if (level.equals("-s")) {
+                break;
+            }
+            System.out.printf(Font.FONT_GREEN + "%s %f 단위량 \t:" + Font.RESET, food, Double.parseDouble(level));
             unit = sc.nextLine();
             if (unit.equals("-s")) {
                 break;
             }
-            map.put(food + "," + unit, level);
+            map.put(food + "," + unit, Double.parseDouble(level));
             writer.fileWrite(food + "," + unit + "," + level, 3);
             i++;
         }
